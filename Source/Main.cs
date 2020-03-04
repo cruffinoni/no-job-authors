@@ -1,11 +1,10 @@
-﻿using RimWorld;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
+using HarmonyLib;
+using RimWorld;
 using Verse;
 using Verse.AI;
-using HarmonyLib;
-using System.Reflection;
 
 namespace NoJobAuthors
 {
@@ -31,10 +30,15 @@ namespace NoJobAuthors
                 ThingRequest thingReq = ThingRequest.ForDef(bill.recipe.unfinishedThingDef);
                 TraverseParms traverseParams = TraverseParms.For(pawn, pawn.NormalMaxDanger());
 
-                __result = (UnfinishedThing)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, thingReq, PathEndMode.InteractionCell, traverseParams, validator: Validator);
-                return false;
-            }
+            __result = (UnfinishedThing) GenClosest.ClosestThingReachable(pawn.Position,
+                pawn.Map,
+                thingReq,
+                PathEndMode.InteractionCell,
+                traverseParams,
+                validator: Validator);
+            return false;
         }
+    }
 
         [HarmonyPatch(typeof(UnfinishedThing), "get_Creator")]
         public static class UnfinishedThing_GetCreator_Patch
@@ -67,7 +71,7 @@ namespace NoJobAuthors
                 var arr = instructions.ToArray();
                 for (var index = 0; index < arr.Length; index++)
                 {
-                    if (arr[index + 0].opcode == OpCodes.Ldloc_S &&
+                    if (arr[index + 0].opcode == OpCodes.Ldloc_3 &&
                         arr[index + 1].opcode == OpCodes.Callvirt &&
                         arr[index + 2].opcode == OpCodes.Ldarg_1 &&
                         arr[index + 3].opcode == OpCodes.Bne_Un)
@@ -103,7 +107,7 @@ namespace NoJobAuthors
                         yield return new CodeInstruction(OpCodes.Nop);
                         yield return new CodeInstruction(OpCodes.Nop);
                         yield return new CodeInstruction(OpCodes.Nop);
-                        yield return new CodeInstruction(OpCodes.Br, arr[index + 3].operand);
+                        yield return new CodeInstruction(OpCodes.Br_S, arr[index + 3].operand);
                         index += 3;
                     }
                     else
