@@ -1,0 +1,10 @@
+<Project>
+  <Target Name="WarnMissingRimWorldManagedDir" BeforeTargets="ResolveReferences"
+          Condition="'$(RequiresRimWorldManaged)' == 'true' and ('$(RIMWORLD_MANAGED_DIR)' == '' or !Exists('$(RIMWORLD_MANAGED_DIR)\\Assembly-CSharp.dll'))">
+    <Warning Text="RIMWORLD_MANAGED_DIR is not set (or invalid). Set it to RimWorldWin64_Data\\Managed to resolve Assembly-CSharp/Unity references." />
+  </Target>
+
+  <Target Name="RemoveHarmonyFromModOutput" AfterTargets="Build" Condition="'$(RemoveHarmonyFromOutput)' == 'true'">
+    <Delete Files="$(OutputPath)0Harmony.dll" Condition="Exists('$(OutputPath)0Harmony.dll')" />
+  </Target>
+</Project>
