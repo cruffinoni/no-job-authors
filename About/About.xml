@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<packageId>Doug.NoJobAuthors</packageId>
+	<packageId>Doug.NoJobAuthors.dev</packageId>
 	<name>No Job Authors</name>
 	<author>Doug</author>
+	<modIconPath>About/Preview.png</modIconPath>
 	<description></description>
 	<supportedVersions>
-		<li>1.1</li>
+		<li>1.6</li>
 	</supportedVersions>
 	<modDependencies>
 		<li>
-			<packageId>UnlimitedHugs.HugsLib</packageId>
-			<displayName>HugsLib</displayName>
-			<downloadUrl>https://ludeon.com/forums/index.php?topic=28066.0</downloadUrl>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
 		</li>
 	</modDependencies>
 </ModMetaData>
