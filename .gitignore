@@ -241,3 +241,6 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Source/MigrationBackup/dacffddb/NoJobAuthors/NuGetUpgradeLog.html
+
+# Rider IDE
+.idea/
