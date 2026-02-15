@@ -1,21 +1,21 @@
 <Project>
-  <PropertyGroup>
-    <LangVersion>latest</LangVersion>
-    <Deterministic>false</Deterministic>
-    <Nullable>disable</Nullable>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <NoWarn>$(NoWarn);NU1701</NoWarn>
-  </PropertyGroup>
+    <PropertyGroup>
+        <LangVersion>latest</LangVersion>
+        <Deterministic>false</Deterministic>
+        <Nullable>disable</Nullable>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <NoWarn>$(NoWarn);NU1701</NoWarn>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <RIMWORLD_TARGET_VERSION Condition="'$(RIMWORLD_TARGET_VERSION)' == ''">1.6</RIMWORLD_TARGET_VERSION>
-    <RIMWORLD_MANAGED_DIR Condition="'$(RIMWORLD_MANAGED_DIR)' == '' and Exists('$(MSBuildThisFileDirectory)_RimWorldData\\Managed\\Assembly-CSharp.dll')">$(MSBuildThisFileDirectory)_RimWorldData\Managed</RIMWORLD_MANAGED_DIR>
-    <RIMWORLD_MANAGED_DIR Condition="'$(RIMWORLD_MANAGED_DIR)' == '' and Exists('D:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll')">D:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed</RIMWORLD_MANAGED_DIR>
-    <RIMWORLD_MANAGED_DIR Condition="'$(RIMWORLD_MANAGED_DIR)' == '' and Exists('C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll')">C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed</RIMWORLD_MANAGED_DIR>
-  </PropertyGroup>
+    <PropertyGroup>
+        <RIMWORLD_TARGET_VERSION Condition="'$(RIMWORLD_TARGET_VERSION)' == ''">1.6</RIMWORLD_TARGET_VERSION>
+        <RIMWORLD_MANAGED_DIR Condition="'$(RIMWORLD_MANAGED_DIR)' == '' and Exists('$(MSBuildThisFileDirectory)_RimWorldData\\Managed\\Assembly-CSharp.dll')">$(MSBuildThisFileDirectory)_RimWorldData\Managed</RIMWORLD_MANAGED_DIR>
+        <RIMWORLD_MANAGED_DIR Condition="'$(RIMWORLD_MANAGED_DIR)' == '' and Exists('D:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll')">D:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed</RIMWORLD_MANAGED_DIR>
+        <RIMWORLD_MANAGED_DIR Condition="'$(RIMWORLD_MANAGED_DIR)' == '' and Exists('C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll')">C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed</RIMWORLD_MANAGED_DIR>
+    </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'">
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
-  </ItemGroup>
+    <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'">
+        <Reference Include="System.Runtime.InteropServices.RuntimeInformation"/>
+    </ItemGroup>
 </Project>
