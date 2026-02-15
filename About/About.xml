@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<packageId>Doug.NoJobAuthors.dev</packageId>
+	<packageId>dayrion.NoJobAuthors</packageId>
 	<name>No Job Authors</name>
-	<author>Doug</author>
+	<author>Doug, Dayrion</author>
 	<modIconPath>About/Preview.png</modIconPath>
-	<description></description>
+	<description>Unfinished bills are no longer tied to one pawn. Any eligible colonist can pick them up and finish them.
+
+Mod originally created by Doug.</description>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>

@@ -73,7 +73,7 @@ namespace NoJobAuthors
         [HarmonyPostfix]
         public static void Creator(UnfinishedThing __instance)
         {
-            CreatorName(__instance) = "Everyone";
+            CreatorName(__instance) = "NoJobAuthors_Anyone".TranslateSimple();
         }
     }
 
