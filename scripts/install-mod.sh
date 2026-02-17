@@ -85,6 +85,7 @@ main() {
   local verbose=0
   local rimworld_root=""
   local mods_canonical=""
+  local auto_create_mods_dir=0
   local destination=""
 
   while [ $# -gt 0 ]; do
@@ -135,15 +136,47 @@ main() {
     [ -d "$mods_path" ] || fail "Mods directory does not exist: $mods_path"
   elif [ -n "$rimworld_path" ]; then
     rimworld_root="$(rw_normalize_path_input "$rimworld_path")"
-    mods_path="$rimworld_root/Mods"
-    [ -d "$mods_path" ] || fail "Mods directory not found at '$mods_path'."
+    if [ -d "$rimworld_root/Mods" ]; then
+      mods_path="$rimworld_root/Mods"
+    elif [ -d "$rimworld_root/RimWorldMac.app/Mods" ]; then
+      rimworld_root="$rimworld_root/RimWorldMac.app"
+      mods_path="$rimworld_root/Mods"
+    else
+      fail "Mods directory not found at '$rimworld_root/Mods' or '$rimworld_root/RimWorldMac.app/Mods'."
+    fi
   else
-    rimworld_root="$(rw_detect_rimworld_root "$verbose" || true)"
-    [ -n "$rimworld_root" ] || fail "Could not detect RimWorld install path. Pass --rimworld-path or --mods-path."
-    mods_path="$rimworld_root/Mods"
+    if rw_is_macos; then
+      mods_path="$(rw_macos_local_mods_path)"
+      auto_create_mods_dir=1
+      rimworld_root="$(rw_detect_rimworld_root "$verbose" || true)"
+    else
+      rimworld_root="$(rw_detect_rimworld_root "$verbose" || true)"
+      [ -n "$rimworld_root" ] || fail "Could not detect RimWorld install path. Pass --rimworld-path or --mods-path."
+      mods_path="$rimworld_root/Mods"
+    fi
   fi
 
-  mods_canonical="$(rw_canonical_dir "$mods_path" || true)"
+  if [ ! -d "$mods_path" ] && [ "$auto_create_mods_dir" = "1" ]; then
+    if [ "$dry_run" = "1" ]; then
+      printf 'Dry run: would create missing local Mods directory: %s\n' "$mods_path"
+    else
+      mkdir -p "$mods_path"
+    fi
+  fi
+
+  if [ -d "$mods_path" ]; then
+    mods_canonical="$(rw_canonical_dir "$mods_path" || true)"
+  elif [ "$auto_create_mods_dir" = "1" ] && [ "$dry_run" = "1" ]; then
+    local mods_parent=""
+    local mods_base=""
+    local mods_parent_canonical=""
+    mods_parent="$(dirname "$mods_path")"
+    mods_base="$(basename "$mods_path")"
+    mods_parent_canonical="$(rw_canonical_dir "$mods_parent" || true)"
+    [ -n "$mods_parent_canonical" ] || fail "Unable to resolve Mods parent directory: $mods_parent"
+    mods_canonical="$mods_parent_canonical/$mods_base"
+  fi
+
   [ -n "$mods_canonical" ] || fail "Unable to resolve Mods directory: $mods_path"
   destination="$mods_canonical/$mod_name"
 
@@ -152,6 +185,9 @@ main() {
   [ -f "$ROOT_DIR/LoadFolders.xml" ] || fail "Required file missing: $ROOT_DIR/LoadFolders.xml"
 
   printf 'Source: %s\n' "$ROOT_DIR"
+  if [ -n "$rimworld_root" ]; then
+    printf 'RimWorld root: %s\n' "$rimworld_root"
+  fi
   printf 'Mods directory: %s\n' "$mods_canonical"
   printf 'Destination: %s\n' "$destination"
 
