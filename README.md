@@ -5,6 +5,22 @@ It should be compatible with any mod that generates unfinished things (eg. Core 
 
 https://ludeon.com/forums/index.php?topic=47836.0
 
+## Save Compatibility
+
+- Safe to add to existing saves.
+- Safe to remove mid-game.
+- If you remove the mod mid-save, unfinished work already on the map can still be continued by other eligible pawns even without the mod.
+- New unfinished work created after removing the mod will use normal vanilla authorship behavior.
+
+## Attribution
+
+- Original author: Doug
+- Forum thread: https://ludeon.com/forums/index.php?topic=47836.0
+- Updated and uploaded for RimWorld 1.0 on Steam by sassykoala:
+  https://steamcommunity.com/sharedfiles/filedetails/?id=1710932701
+- Maintained for RimWorld 1.1+ by Jellypowered (with permission from Doug):
+  https://github.com/Jellypowered/no-job-authors/releases/latest
+
 ## Dev Scripts
 
 - `scripts/build-mod.sh`: restores and builds `Source/NoJobAuthors.sln` (Debug).
