@@ -5,8 +5,19 @@
 	<author>Doug, Dayrion</author>
 	<modIconPath>About/Preview.png</modIconPath>
 	<description>Unfinished bills are no longer tied to one pawn. Any eligible colonist can pick them up and finish them.
+Safe to add to existing saves.
+Safe to remove mid-save.
+If removed mid-save, existing unfinished work can still be completed by other eligible pawns.
+New unfinished work created after removal follows vanilla authorship behavior.
 
-Mod originally created by Doug.</description>
+Original author: Doug
+Forum thread: https://ludeon.com/forums/index.php?topic=47836.0
+
+Updated and uploaded for RimWorld 1.0 on Steam by sassykoala:
+https://steamcommunity.com/sharedfiles/filedetails/?id=1710932701
+
+Maintained for RimWorld 1.1+ by Jellypowered (with permission from Doug):
+https://github.com/Jellypowered/no-job-authors/releases/latest</description>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>
