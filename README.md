@@ -25,6 +25,8 @@ https://ludeon.com/forums/index.php?topic=47836.0
 
 - `scripts/build-mod.sh`: restores and builds `Source/NoJobAuthors.sln` (Debug).
 - `scripts/install-mod.sh`: installs/updates this mod into your RimWorld `Mods` folder.
+- `scripts/build-mod.ps1`: Windows PowerShell build script (restores and builds `Source/NoJobAuthors.sln` in Debug).
+- `scripts/install-mod.ps1`: Windows PowerShell install/update script for your RimWorld `Mods` folder.
   - Required runtime content copied: `About`, `1.6`, `LoadFolders.xml`.
   - Optional content copied when present: `Languages`, `Textures`, `README.md`, `changelog.txt`, `credits.md`.
 
@@ -46,3 +48,10 @@ bash scripts/install-mod.sh --mods-path "$HOME/Library/Application Support/RimWo
 bash scripts/install-mod.sh --mods-path "$HOME/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods"
 ```
 
+Windows (PowerShell):
+
+```powershell
+pwsh -File scripts/build-mod.ps1
+pwsh -File scripts/install-mod.ps1 -DryRun -VerboseOutput
+pwsh -File scripts/install-mod.ps1 -Build -ModsPath "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods"
+```
