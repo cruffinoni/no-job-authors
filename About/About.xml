@@ -2,8 +2,7 @@
 <ModMetaData>
 	<packageId>dayrion.NoJobAuthors</packageId>
 	<name>No Job Authors</name>
-	<author>Doug, Dayrion</author>
-	<modIconPath>About/Preview.png</modIconPath>
+	<author>Doug, sassykoala, Jellypowered, Dayrion</author>
 	<description>Unfinished bills are no longer tied to one pawn. Any eligible colonist can pick them up and finish them.
 Safe to add to existing saves.
 Safe to remove mid-save.
