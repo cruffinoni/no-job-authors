@@ -30,9 +30,19 @@ https://ludeon.com/forums/index.php?topic=47836.0
 
 Examples:
 
+Linux / WSL:
+
 ```bash
 bash scripts/build-mod.sh
 bash scripts/install-mod.sh --dry-run --verbose
 bash scripts/install-mod.sh --build --mods-path "/mnt/c/Program Files (x86)/Steam/steamapps/common/RimWorld/Mods"
+```
+
+macOS:
+
+```bash
+bash scripts/build-mod.sh
+bash scripts/install-mod.sh --mods-path "$HOME/Library/Application Support/RimWorld/Mods"
+bash scripts/install-mod.sh --mods-path "$HOME/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods"
 ```
 

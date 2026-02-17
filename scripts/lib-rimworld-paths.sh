@@ -7,6 +7,14 @@ rw_is_wsl() {
   [ -n "${WSL_DISTRO_NAME:-}" ]
 }
 
+rw_is_macos() {
+  [ "$(uname -s)" = "Darwin" ]
+}
+
+rw_macos_local_mods_path() {
+  printf '%s\n' "$HOME/Library/Application Support/RimWorld/Mods"
+}
+
 rw_normalize_path_input() {
   local input="$1"
   if rw_is_wsl && command -v wslpath >/dev/null 2>&1; then
@@ -62,6 +70,16 @@ rw_detect_rimworld_root() {
     "/c/Program Files/Steam/steamapps/libraryfolders.vdf"
   )
 
+  if rw_is_macos; then
+    candidates+=(
+      "$HOME/Library/Application Support/Steam/steamapps/common/RimWorld"
+      "$HOME/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app"
+    )
+    steam_vdfs+=(
+      "$HOME/Library/Application Support/Steam/steamapps/libraryfolders.vdf"
+    )
+  fi
+
   if rw_is_wsl; then
     local drive
     for drive in /mnt/[d-z]; do
@@ -82,6 +100,9 @@ rw_detect_rimworld_root() {
       [ -n "$library_path" ] || continue
       candidate="$library_path/steamapps/common/RimWorld"
       candidates+=("$candidate")
+      if rw_is_macos; then
+        candidates+=("$candidate/RimWorldMac.app")
+      fi
     done < <(rw_extract_steam_library_paths "$vdf")
   done
 
@@ -90,6 +111,10 @@ rw_detect_rimworld_root() {
       printf 'Checking RimWorld path candidate: %s\n' "$path" >&2
     fi
     if [ -d "$path/Mods" ]; then
+      rw_canonical_dir "$path"
+      return 0
+    fi
+    if [ -d "$path/RimWorldMac.app/Mods" ]; then
       rw_canonical_dir "$path"
       return 0
     fi
