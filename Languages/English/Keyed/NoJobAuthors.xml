@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <NoJobAuthors_Anyone>Anyone</NoJobAuthors_Anyone>
+  <NoJobAuthors_Settings_OnlyNonQuality>Only apply to non-quality items</NoJobAuthors_Settings_OnlyNonQuality>
+  <NoJobAuthors_Settings_OnlyNonQuality_Desc>When enabled, recipes that produce quality items keep vanilla authorship. Non-quality recipes continue to allow any eligible pawn to resume unfinished work.</NoJobAuthors_Settings_OnlyNonQuality_Desc>
 </LanguageData>

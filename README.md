@@ -5,6 +5,16 @@ It should be compatible with any mod that generates unfinished things (eg. Core 
 
 https://ludeon.com/forums/index.php?topic=47836.0
 
+## Settings
+
+- By default, behavior is unchanged: unfinished bills are not tied to a specific author.
+- New toggle: `Only apply to non-quality items`.
+- When enabled:
+  - Recipes that produce quality items keep vanilla authorship behavior.
+  - Recipes that produce non-quality items keep No Job Authors behavior.
+- Quality detection is based on whether a recipe's produced item has the `CompQuality` component.
+- Conservative fallback: if a recipe's output cannot be resolved clearly, it is treated as quality-sensitive.
+
 ## Save Compatibility
 
 - Safe to add to existing saves.
