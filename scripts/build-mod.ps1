@@ -29,4 +29,4 @@ Write-Host "Build target: $solution"
 Write-Host 'Build tool: dotnet'
 
 Invoke-Dotnet -Arguments @('restore', $solution)
-Invoke-Dotnet -Arguments @('build', $solution, '-c', 'Debug', '--no-restore')
+Invoke-Dotnet -Arguments @('build', $solution, '-c', 'Release', '--no-restore')

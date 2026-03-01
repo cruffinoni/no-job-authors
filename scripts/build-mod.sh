@@ -8,7 +8,7 @@ SOLUTION_ARG="$SOLUTION"
 
 if command -v dotnet >/dev/null 2>&1; then
   dotnet restore "$SOLUTION_ARG"
-  dotnet build "$SOLUTION_ARG" -c Debug --no-restore
+  dotnet build "$SOLUTION_ARG" -c Release --no-restore
   exit 0
 fi
 
@@ -20,18 +20,18 @@ if [ -x "/mnt/c/Program Files/dotnet/dotnet.exe" ]; then
     exit 1
   fi
   "/mnt/c/Program Files/dotnet/dotnet.exe" restore "$SOLUTION_ARG"
-  "/mnt/c/Program Files/dotnet/dotnet.exe" build "$SOLUTION_ARG" -c Debug --no-restore
+  "/mnt/c/Program Files/dotnet/dotnet.exe" build "$SOLUTION_ARG" -c Release --no-restore
   exit 0
 fi
 
 if command -v msbuild >/dev/null 2>&1; then
-  msbuild "$SOLUTION" /t:Restore /p:Configuration=Debug /v:m
-  msbuild "$SOLUTION" /p:Configuration=Debug /v:m
+  msbuild "$SOLUTION" /t:Restore /p:Configuration=Release /v:m
+  msbuild "$SOLUTION" /p:Configuration=Release /v:m
   exit 0
 fi
 
 if command -v devenv >/dev/null 2>&1; then
-  devenv "$SOLUTION" /build Debug
+  devenv "$SOLUTION" /build Release
   exit 0
 fi
 

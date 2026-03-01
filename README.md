@@ -23,12 +23,39 @@ https://ludeon.com/forums/index.php?topic=47836.0
 
 ## Dev Scripts
 
-- `scripts/build-mod.sh`: restores and builds `Source/NoJobAuthors.sln` (Debug).
+- `scripts/build-mod.sh`: restores and builds `Source/NoJobAuthors.sln` (Release).
 - `scripts/install-mod.sh`: installs/updates this mod into your RimWorld `Mods` folder.
-- `scripts/build-mod.ps1`: Windows PowerShell build script (restores and builds `Source/NoJobAuthors.sln` in Debug).
+- `scripts/build-mod.ps1`: Windows PowerShell build script (restores and builds `Source/NoJobAuthors.sln` in Release).
 - `scripts/install-mod.ps1`: Windows PowerShell install/update script for your RimWorld `Mods` folder.
   - Required runtime content copied: `About`, `1.6`, `LoadFolders.xml`.
   - Optional content copied when present: `Languages`, `Textures`, `README.md`, `changelog.txt`, `credits.md`.
+
+## Generate DLL
+
+- `.dll` files are intentionally not committed in this repository.
+- Generate `NoJobAuthors.dll` locally with one of these commands:
+
+Linux / WSL / macOS:
+
+```bash
+bash scripts/build-mod.sh
+```
+
+Windows (PowerShell):
+
+```powershell
+pwsh -File scripts/build-mod.ps1
+```
+
+Expected output:
+
+- `1.6/Assemblies/NoJobAuthors.dll`
+
+Quick verification:
+
+```bash
+ls 1.6/Assemblies/NoJobAuthors.dll
+```
 
 Examples:
 

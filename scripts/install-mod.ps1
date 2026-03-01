@@ -17,7 +17,7 @@ Usage:
   scripts/install-mod.ps1 [options]
 
 Options:
-  -Build                    Build Source/NoJobAuthors.csproj (Debug) before install. Stops on build failure.
+  -Build                    Build Source/NoJobAuthors.csproj (Release) before install. Stops on build failure.
   -ModName <name>           Destination folder name under RimWorld Mods (default: NoJobAuthors).
   -RimWorldPath <path>      Explicit RimWorld root path. Uses <path>\Mods.
   -ModsPath <path>          Explicit Mods directory path (highest precedence).
@@ -69,7 +69,7 @@ function Invoke-BuildStep {
     Write-Host "Build target: $project"
     Write-Host 'Build tool: dotnet'
     Invoke-Dotnet -Arguments @('restore', $project)
-    Invoke-Dotnet -Arguments @('build', $project, '-c', 'Debug', '--no-restore')
+    Invoke-Dotnet -Arguments @('build', $project, '-c', 'Release', '--no-restore')
     Write-Host 'Build succeeded.'
 }
 

@@ -13,7 +13,7 @@ Usage:
   scripts/install-mod.sh [options]
 
 Options:
-  --build                Build Source/NoJobAuthors.csproj (Debug) before install. Stops on build failure.
+  --build                Build Source/NoJobAuthors.csproj (Release) before install. Stops on build failure.
   --mod-name <name>      Destination folder name under RimWorld Mods (default: NoJobAuthors).
   --rimworld-path <path> Explicit RimWorld root path. Uses <path>/Mods.
   --mods-path <path>     Explicit Mods directory path (highest precedence).
@@ -49,7 +49,7 @@ run_build_step() {
   printf 'Build target: %s\n' "$project"
   printf 'Build tool: %s\n' "${dotnet_cmd[*]}"
   "${dotnet_cmd[@]}" restore "$project_arg"
-  "${dotnet_cmd[@]}" build "$project_arg" -c Debug --no-restore
+  "${dotnet_cmd[@]}" build "$project_arg" -c Release --no-restore
   printf 'Build succeeded.\n'
 }
 
